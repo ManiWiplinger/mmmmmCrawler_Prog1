@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien.coffescript;
 
 import at.ac.fhcampuswien.coffescript.Crawler.mmmmmC;
+import at.ac.fhcampuswien.coffescript.Crawler.mmmmmcManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,10 +13,16 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws IOException {
-        System.out.println("Hallo, wonach suchen wir heute?");
         Scanner scan = new Scanner(System.in);
+        System.out.print("Hallo, wonach soll ich für dich suchen?");
         String eingabe  = scan.nextLine();
-        HashSet<String> data = new mmmmmC().getPageLinks("http://www." + eingabe + ".at/");
+        System.out.print("Wie weit soll ich gehen?");
+        int depth  = scan.nextInt();
+        mmmmmC data = new mmmmmC("http://www." + eingabe + ".at/");
         System.out.println(data.toString());
+        mmmmmcManager dataDepth = new mmmmmcManager(data.getPageLinks(),depth);
+        /**for(mmmmmC out : dataDepth.getContent()){
+            System.out.println(out.toString());
+        }**/
     }
 }
