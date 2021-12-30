@@ -26,7 +26,6 @@ public class mmmmmC {
                 }
                 links.add(URL);
                 Document document = Jsoup.connect(URL).get();//Fetch the HTML code
-                System.out.println(document);
                 Elements linksOnPage = document.select("a[href]");//Parse the HTML to extract links to other URLs
                 depth++;
                 for (Element page : linksOnPage) {//For each extracted URL... go back to Step 4.
