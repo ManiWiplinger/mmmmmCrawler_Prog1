@@ -6,34 +6,34 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.Scanner;
 
 public class mmmmmC {
     private HashSet<String> links;
+    int countLinks = 0;
 
     public mmmmmC() {
         links = new HashSet<String>();
+        countLinks=0;
     }
 
-    public void getPageLinks(String URL) {
-        final int MaxDepth = 3;
-        int depth = 0;
-        if (!links.contains(URL) && (depth < MaxDepth)) {
+    public HashSet<String> getPageLinks(String URL) {
+        if (!links.contains(URL)){
             try {
-                if (links.add(URL)) {//if not add it to the index
-                    System.out.println( depth + " Link:" + URL);
-
-                }
-                links.add(URL);
                 Document document = Jsoup.connect(URL).get();//Fetch the HTML code
                 Elements linksOnPage = document.select("a[href]");//Parse the HTML to extract links to other URLs
-                depth++;
                 for (Element page : linksOnPage) {//For each extracted URL... go back to Step 4.
-                    getPageLinks(page.attr("abs:href"));
+                    links.add(page.attr("abs:href"));
                 }
+                return links;
             } catch (IOException e) {
                 System.err.println("For '"+ URL + "': " + e.getMessage());
             }
         }
+        return links;
+    }
+
+    @Override
+    public String toString() {
+        return "Link "+(countLinks+1)+":";
     }
 }
