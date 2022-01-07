@@ -27,10 +27,8 @@ public class mmmmmcManager {
             mmmmmC test= new mmmmmC(URL);
             System.out.println(test.toString());
             //TODO mmmmmcCompareTo muss funktionieren https://www.geeksforgeeks.org/how-to-sort-a-treeset-with-user-defined-objects-in-java/
-            //temp.add(test);
         }
         depth++;
         return temp;
     }
-
 }

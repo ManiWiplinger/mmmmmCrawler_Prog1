@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.coffescript;
 
 import at.ac.fhcampuswien.coffescript.Crawler.mmmmmC;
 import at.ac.fhcampuswien.coffescript.Crawler.mmmmmcManager;
+import at.ac.fhcampuswien.coffescript.Crawler.mmmmmCJsonWriter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -21,6 +22,10 @@ public class App {
         mmmmmC data = new mmmmmC("http://www." + eingabe + ".at/");
         System.out.println(data.toString());
         mmmmmcManager dataDepth = new mmmmmcManager(data.getPageLinks(),depth);
+
+        //JSON part starts here
+        mmmmmCJsonWriter.fileWriter(mmmmmCJsonWriter.hashSetConverter(data.getPageLinks()));
+        //JSON part ends here
         /**for(mmmmmC out : dataDepth.getContent()){
             System.out.println(out.toString());
         }**/
